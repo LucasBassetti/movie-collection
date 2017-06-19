@@ -1,7 +1,8 @@
 import styled from 'styled-components';
+import { colors } from '../../configs';
 
 export default styled.p`
-  color: #fff;
+  color: ${colors.default};
   display: -webkit-box;
   font-size: 14px;
   height: 48px;
