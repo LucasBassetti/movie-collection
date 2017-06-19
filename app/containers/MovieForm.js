@@ -9,11 +9,7 @@ import {
 } from 'redux-form';
 import { connect } from 'react-redux';
 import { fetchMovie, addMovie, editMovie } from '../actions';
-import { MovieFormImage } from '../components';
-import Label from '../components/common/Label';
-import Input from '../components/common/Input';
-import TextArea from '../components/common/TextArea';
-import Error from '../components/common/Error';
+import { MovieFormImage, MovieField } from '../components';
 
 const randomID = require('random-id');
 
@@ -35,80 +31,6 @@ const validate = (values) => {
     errors.synopsis = 'Required';
   }
   return errors;
-};
-
-const renderField = (props) => {
-  const { input, label, type, meta: { touched, error } } = props;
-
-  if (type === 'file') {
-    return (
-      <div>
-        <Label>
-          {label}
-        </Label>
-        <div>
-          <Input
-            id={label}
-            multiple={true}
-            type={type}
-            error={touched && error}
-            onChange={(e) => {
-              const files = [...e.target.files];
-              const { addImage } = props;
-
-              for (let i = 0, len = files.length; i < len; i += 1) {
-                const FR = new FileReader();
-                FR.onload = (event) => {
-                  const image = event.target.result;
-                  addImage(image);
-                };
-                FR.readAsDataURL(files[i]);
-              }
-            }}
-          />
-          {touched && ((error && <Error>{error}</Error>))}
-          <label htmlFor={label}>Select images</label>
-        </div>
-      </div>
-    );
-  }
-
-  return (
-    <div>
-      <Label>
-        {label}
-      </Label>
-      <div>
-        {
-          type === 'textarea' &&
-          <TextArea
-            {...input}
-            placeholder={label}
-            error={touched && error}
-            rows="5"
-          />
-        }
-        {
-          type !== 'textarea' &&
-          <Input
-            {...input}
-            placeholder={label}
-            type={type}
-            error={touched && error}
-          />
-        }
-        {touched && ((error && <Error>{error}</Error>))}
-      </div>
-    </div>
-  );
-};
-
-renderField.propTypes = {
-  addImage: PropTypes.func.isRequired,
-  input: PropTypes.object.isRequired,
-  meta: PropTypes.object.isRequired,
-  type: PropTypes.string.isRequired,
-  label: PropTypes.string.isRequired,
 };
 
 class MovieForm extends Component {
@@ -140,6 +62,19 @@ class MovieForm extends Component {
         this.setState({ images: movie.images, coverImage: movie.coverImage });
       });
       this.setState({ editMode: true, movieId });
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.match.path !== nextProps.match.path) {
+      this.props.changeFieldValue('movieForm', 'title', '');
+      this.props.changeFieldValue('movieForm', 'synopsis', '');
+      this.setState({
+        images: [],
+        coverImage: undefined,
+        editMode: false,
+        movieId: undefined,
+      });
     }
   }
 
@@ -217,6 +152,7 @@ class MovieForm extends Component {
     const { images } = this.state;
 
     if (type === 'images') {
+      console.log(images);
       return _.map(images, this.renderImage);
     }
 
@@ -227,7 +163,7 @@ class MovieForm extends Component {
         name={name}
         label={label}
         addImage={this.addImage}
-        component={renderField}
+        component={MovieField}
       />
     );
   }

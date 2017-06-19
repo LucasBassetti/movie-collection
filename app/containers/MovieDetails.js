@@ -24,7 +24,13 @@ class MovieDetails extends Component {
 
   componentWillMount() {
     const { id } = this.props.match.params;
-    this.props.fetchMovie(id);
+    this.props.fetchMovie(id, (movie) => {
+      if (movie) {
+        const { images, coverImage } = movie;
+        const selectedImage = images.indexOf(coverImage);
+        this.setState({ selectedImage });
+      }
+    });
   }
 
   nextImage() {

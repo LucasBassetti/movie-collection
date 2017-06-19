@@ -7,7 +7,8 @@
     "test": "./node_modules/.bin/mocha app/**/**/**/*.spec.js --require tests/setup.js --require babel-register --require ignore-styles",
     "test:watch": "npm test -- --watch",
     "test:coverage": "nyc npm test",
-    "build": "./node_modules/.bin/webpack -p"
+    "build": "./node_modules/.bin/webpack -p",
+    "coveralls": "npm run test:coverage && nyc report --reporter=text-lcov | coveralls"
   },
   "nyc": {
     "reporter": [
@@ -44,6 +45,7 @@
     "chai": "^3.5.0",
     "clean-webpack-plugin": "^0.1.16",
     "copy-webpack-plugin": "^4.0.1",
+    "coveralls": "^2.13.1",
     "css-loader": "^0.28.4",
     "enzyme": "^2.8.0",
     "eslint": "^3.19.0",

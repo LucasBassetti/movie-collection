@@ -13,18 +13,19 @@ const image = 'http://example.com/image.jpg';
 
 const mockStore = configureStore();
 // const dispatch = sinon.spy();
+const movie = {
+  id: '1',
+  title: 'Movie Title',
+  synopsis: 'Movie Synopsis',
+  coverImage,
+  images: [
+    coverImage,
+    image,
+  ],
+};
 
 const store = mockStore({
-  movie: {
-    id: '1',
-    title: 'Movie Title',
-    synopsis: 'Movie Synopsis',
-    coverImage,
-    images: [
-      coverImage,
-      image,
-    ],
-  },
+  movie,
 });
 const match = { params: {} };
 

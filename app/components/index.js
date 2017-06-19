@@ -4,6 +4,7 @@ import Movie from './movie/Movie';
 import MovieDetailsContainer from './movie-details/MovieDetailsContainer';
 import MovieDetailsImage from './movie-details/MovieDetailsImage';
 import MovieFormImage from './movie-form/MovieFormImage';
+import MovieField from './movie-form/MovieField';
 
 export {
   Header,
@@ -12,4 +13,5 @@ export {
   MovieDetailsContainer,
   MovieDetailsImage,
   MovieFormImage,
+  MovieField,
 };
