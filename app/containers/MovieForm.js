@@ -86,10 +86,13 @@ class MovieForm extends Component {
 
   addImage(image) {
     const { images } = this.state;
-    const coverImage = this.state.coverImage || image;
 
-    images.push(image);
-    this.setState({ images, coverImage });
+    if (images.indexOf(image) < 0) {
+      const coverImage = this.state.coverImage || image;
+
+      images.push(image);
+      this.setState({ images, coverImage });
+    }
   }
 
   removeImage(index) {
@@ -152,7 +155,6 @@ class MovieForm extends Component {
     const { images } = this.state;
 
     if (type === 'images') {
-      console.log(images);
       return _.map(images, this.renderImage);
     }
 
@@ -175,7 +177,13 @@ class MovieForm extends Component {
     const buttonText = editMode ? 'EDIT MOVIE' : 'ADD MOVIE';
 
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form
+        onSubmit={this.handleSubmit}
+        style={{
+          margin: 'auto',
+          maxWidth: '768px',
+        }}
+      >
         {_.map(fields, this.renderFieldItem)}
         <div>
           <button

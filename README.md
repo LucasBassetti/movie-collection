@@ -1,6 +1,6 @@
 # Movie Collection
 
-<a href="https://travis-ci.org/LucasBassetti/movie-collection"><img src="https://travis-ci.org/LucasBassetti/movie-collection.svg?branch=master" alt="Travis CI" /></a>
+<a href="https://travis-ci.org/LucasBassetti/movie-collection"><img src="https://travis-ci.org/LucasBassetti/movie-collection.svg?branch=master" alt="Travis CI" /></a> <a href='https://coveralls.io/github/LucasBassetti/movie-collection?branch=master'><img src='https://coveralls.io/repos/github/LucasBassetti/movie-collection/badge.svg?branch=master' alt='Coverage Status' /></a>
 
 ## Getting Start
 

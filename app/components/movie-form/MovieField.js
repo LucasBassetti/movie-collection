@@ -18,6 +18,7 @@ const MovieField = (props) => {
           <Input
             id={label}
             multiple={true}
+            accept="image/*"
             type={type}
             error={touched && error}
             onChange={(e) => {
