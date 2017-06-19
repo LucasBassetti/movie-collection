@@ -124,14 +124,17 @@ class MovieForm extends Component {
       images,
     };
 
+    let redirectLink = '#/';
+
     if (editMode) {
       this.props.editMovie(movie);
+      redirectLink = `#/movies/${movieId}`;
     } else {
       this.props.addMovie(movie);
     }
 
     setTimeout(() => {
-      location.href = '#/';
+      location.href = redirectLink;
     }, 100);
   }
 

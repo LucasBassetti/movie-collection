@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "Movie Collection",
   "scripts": {
+    "precommit": "npm test && npm run build",
     "start": "./node_modules/.bin/webpack-dev-server --inline --content-base build/ -d",
     "test": "./node_modules/.bin/mocha app/**/**/**/*.spec.js --require tests/setup.js --require babel-register --require ignore-styles",
     "test:watch": "npm test -- --watch",
@@ -53,6 +54,7 @@
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^4.0.0",
     "eslint-plugin-react": "^6.10.3",
+    "husky": "^0.13.4",
     "ignore-styles": "^5.0.1",
     "jsdom": "^9.12.0",
     "mocha": "^3.4.2",
@@ -76,6 +78,6 @@
     "react-router-dom": "^4.1.1",
     "redux": "^3.6.0",
     "redux-form": "^6.8.0",
-    "styled-components": "^2.0.1"
+    "styled-components": "^2.1.0"
   }
 }
